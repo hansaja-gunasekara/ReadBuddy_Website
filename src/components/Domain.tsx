@@ -161,15 +161,37 @@ export default function Domain() {
                 <BookOpenIcon className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900">
-                Literature Analysis
+                Literature Survey
               </h3>
             </div>
             <p className="leading-relaxed text-slate-600">
-              Comprehensive analysis of existing frameworks including EasyLexia
-              and AraRead demonstrates focus on isolated usability and
-              engagement metrics. Our research advances the field by integrating
-              reading, writing, pronunciation, and cognitive modules into a
-              unified, adaptive learning ecosystem.
+              A Mobile Application to Improve Learning Performance of Dyslexic
+              Children Explores a mobile app providing interactive exercises,
+              personalized feedback, and multisensory learning to help improve
+              writing, spelling, and organization skills in children with
+              dyslexia. EasyLexia A mobile app designed to enhance reading,
+              memory, and problem-solving skills through a fun and interactive
+              experience, focusing on usability and learning outcomes. Designing
+              a Mobile Application for Dyslexia in Reading Disorders Developed a
+              reading support app for dyslexic children. The prototype was
+              tested with teachers, parents, and students to gather feedback for
+              future improvements. Mobile Application for Dyslexia Diagnosis and
+              Reading Practice An app used for both dyslexia diagnosis support
+              and reading practice, tested in schools to validate its impact on
+              students’ reading skills. AraRead A mobile app aimed at improving
+              Arabic reading skills for dyslexic children in Morocco. The study
+              showed increased reading ability, motivation, and self-directed
+              learning. Learning Ally Provides a large library of audiobooks to
+              help students build reading skills and access written content
+              easily. Text-to-Speech Applications Tools like NaturalReader,
+              ClaroSpeak, and Voice Dream Reader convert text into spoken words
+              to enhance reading comprehension and fluency. Omoguru A Chrome
+              extension offering dyslexia-friendly fonts, adjustable spacing,
+              and background options for better reading and writing support.
+              Speech Therapy & Language Apps MyTalkMobile: AAC tool with video,
+              images, and text-to-speech. Articulation Station: Teaches English
+              consonant sounds with interactive exercises. Fun With Directions:
+              Improves listening comprehension with animated activities.
             </p>
           </div>
         </div>
@@ -330,7 +352,6 @@ export default function Domain() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

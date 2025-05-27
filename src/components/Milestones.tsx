@@ -1,5 +1,6 @@
+import React from 'react';
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, Calendar, FileText } from "lucide-react";
+import { CheckCircle, FileText } from "lucide-react";
 
 const milestones = [
   {
@@ -54,89 +55,35 @@ const milestones = [
   {
     title: "Final Presentation",
     date: "May 2025",
-    status: "in-progress",
+    status: "completed",
     description: "Project demonstration and results presentation",
     icon: FileText,
   },
   {
     title: "Research Paper",
     date: "June 2025",
-    status: "upcoming",
+    status: "completed",
     description: "Peer-reviewed publication submission",
     icon: FileText,
   },
 ];
 
-type StatusType = "completed" | "in-progress" | "upcoming";
-
-interface StatusBadgeProps {
-  status: StatusType;
-}
-
-const StatusBadge = ({ status }: StatusBadgeProps) => {
-  const getStatusConfig = (status: StatusType) => {
-    switch (status) {
-      case "completed":
-        return {
-          bg: "bg-emerald-50",
-          text: "text-emerald-700",
-          border: "border-emerald-200",
-          label: "Completed",
-          icon: CheckCircle,
-        };
-      case "in-progress":
-        return {
-          bg: "bg-amber-50",
-          text: "text-amber-700",
-          border: "border-amber-200",
-          label: "In Progress",
-          icon: Clock,
-        };
-      default:
-        return {
-          bg: "bg-slate-50",
-          text: "text-slate-600",
-          border: "border-slate-200",
-          label: "Upcoming",
-          icon: Calendar,
-        };
-    }
-  };
-
-  const config = getStatusConfig(status);
-  const StatusIcon = config.icon;
-
+const StatusBadge = () => {
   return (
-    <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border ${config.bg} ${config.text} ${config.border}`}>
-      <StatusIcon size={12} />
-      <span className="text-xs font-medium">{config.label}</span>
+    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border bg-emerald-50 text-emerald-700 border-emerald-200">
+      <CheckCircle size={12} />
+      <span className="text-xs font-medium">Completed</span>
     </div>
   );
 };
 
-const ProgressBar = ({ status }: { status: StatusType }) => {
-  const getProgress = () => {
-    switch (status) {
-      case "completed": return 100;
-      case "in-progress": return 65;
-      default: return 0;
-    }
-  };
-
-  const getColor = () => {
-    switch (status) {
-      case "completed": return "bg-emerald-500";
-      case "in-progress": return "bg-amber-500";
-      default: return "bg-slate-300";
-    }
-  };
-
+const ProgressBar = () => {
   return (
     <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
       <motion.div
-        className={`h-full ${getColor()} rounded-full`}
+        className="h-full bg-emerald-500 rounded-full"
         initial={{ width: 0 }}
-        whileInView={{ width: `${getProgress()}%` }}
+        whileInView={{ width: "100%" }}
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         viewport={{ once: true }}
       />
@@ -168,10 +115,10 @@ export default function Milestones() {
         {/* Timeline Container */}
         <div className="relative">
           {/* Central Timeline Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 via-blue-300 to-blue-200 transform -translate-x-1/2" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-200 via-emerald-300 to-emerald-200 transform -translate-x-1/2" />
           
           {/* Mobile Timeline Line */}
-          <div className="md:hidden absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 via-blue-300 to-blue-200" />
+          <div className="md:hidden absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-200 via-emerald-300 to-emerald-200" />
 
           <div className="space-y-8">
             {milestones.map((milestone, index) => {
@@ -201,13 +148,7 @@ export default function Milestones() {
                       ? "left-8 md:left-1/2" 
                       : "left-8 md:left-1/2"
                   } transform md:-translate-x-1/2 -translate-x-1/2 z-10`}>
-                    <div className={`w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center ${
-                      milestone.status === "completed" 
-                        ? "bg-emerald-500" 
-                        : milestone.status === "in-progress"
-                        ? "bg-amber-500"
-                        : "bg-slate-400"
-                    }`}>
+                    <div className="w-12 h-12 rounded-full border-4 border-white shadow-lg flex items-center justify-center bg-emerald-500">
                       <IconComponent className="text-white" size={20} />
                     </div>
                   </div>
@@ -232,7 +173,7 @@ export default function Milestones() {
                           <span className="text-sm font-medium text-slate-500 bg-slate-50 px-3 py-1 rounded-lg">
                             {milestone.date}
                           </span>
-                          <StatusBadge status={milestone.status as StatusType} />
+                          <StatusBadge />
                         </div>
                       </div>
 
@@ -245,12 +186,9 @@ export default function Milestones() {
                       <div className="space-y-2">
                         <div className="flex justify-between items-center text-sm">
                           <span className="text-slate-500 font-medium">Progress</span>
-                          <span className="text-slate-700 font-semibold">
-                            {milestone.status === "completed" ? "100%" : 
-                             milestone.status === "in-progress" ? "65%" : "0%"}
-                          </span>
+                          <span className="text-emerald-700 font-semibold">100%</span>
                         </div>
-                        <ProgressBar status={milestone.status as StatusType} />
+                        <ProgressBar />
                       </div>
                     </motion.div>
                   </div>
@@ -260,27 +198,6 @@ export default function Milestones() {
           </div>
         </div>
 
-        {/* Summary Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6"
-        >
-          <div className="text-center p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
-            <div className="text-3xl font-bold text-emerald-600 mb-1">7</div>
-            <div className="text-emerald-700 font-medium">Completed</div>
-          </div>
-          <div className="text-center p-6 bg-amber-50 rounded-2xl border border-amber-100">
-            <div className="text-3xl font-bold text-amber-600 mb-1">1</div>
-            <div className="text-amber-700 font-medium">In Progress</div>
-          </div>
-          <div className="text-center p-6 bg-slate-50 rounded-2xl border border-slate-100">
-            <div className="text-3xl font-bold text-slate-600 mb-1">1</div>
-            <div className="text-slate-700 font-medium">Upcoming</div>
-          </div>
-        </motion.div>
       </div>
     </div>
   );
